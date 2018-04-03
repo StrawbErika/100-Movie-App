@@ -33,15 +33,41 @@ class AddMovie extends Component{
 
   render(){
     const {title, year, actor, franchise, director} = this.state;
-    return(
-      <div className ="content">
-        <h3>{title} </h3>
-        Year: {year} <br/>
-        Lead: {actor} <br/>
-        Franchise: {franchise} <br/>
-        Director: {director} <br/>
-      </div>
-    )
+      return (
+        <div>
+          <legend> Sign Up </legend>
+          <div>
+            <input
+            label="Title"
+            placeholder="Title"
+            value={this.state.title}/>
+          </div>
+          <div>
+            <input
+            label="Actor"
+            placeholder="Actor"
+            value={this.state.actor}/>
+          </div>
+          <div>
+            <input
+            label="Year"
+            placeholder="Year"
+            value={this.state.year}/>
+          </div>
+          <div>
+            <input
+            label="Franchise"
+            placeholder="Franchise"
+            value={this.state.franchise}/>
+          </div>
+          <div>
+            <input
+            label="Director"
+            placeholder="Director"
+            value={this.state.director}/>
+          </div>
+        </div>
+      );
   }
 }
 export default AddMovie;

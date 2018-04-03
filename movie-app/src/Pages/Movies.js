@@ -27,7 +27,8 @@ class Movies extends Component{
         <ol> 
           {
             this.state.movies.map((movie) =>{
-              return <li key={movie._id}>{movie.title}</li>
+              return <li key={movie._id}>{movie.title} <button>Delete </button></li> 
+
             })
           }
         </ol>

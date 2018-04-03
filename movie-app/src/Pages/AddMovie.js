@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 
 class AddMovie extends Component{
 
-  constructor(props){
-    super(props)
+  constructor(){
+    super()
 
     this.state = {
-      _id: this.props.match.params._id,
       title: '',
       year: '',
       director: '',
@@ -14,11 +13,8 @@ class AddMovie extends Component{
       franchise: ''
     }
 
-    //populate the list
-    //send a request to server
-
     //2 Send a GET request to the server
-    fetch('http://localhost:3001/movie/find-by-id/'+this.state._id)
+    fetch('http://localhost:3001/movies/')
     .then((response) => {return response.json() })
     .then((body) => {
       this.setState({
@@ -30,6 +26,34 @@ class AddMovie extends Component{
       })
     })
   }
+
+
+  handleTitle = (e) => {
+    this.setState({
+      title: e.target.value})
+  }
+
+  handleYear = (e) => {
+    this.setState({
+      year: e.target.value})
+  }
+
+  handleDirector = (e) => {
+    this.setState({
+      director: e.target.value})
+  }
+
+  handleActor = (e) => {
+    this.setState({
+      actor: e.target.value})
+  }
+
+  handleFranchise = (e) => {
+    this.setState({
+      franchise: e.target.value})
+  }
+
+
 
   render(){
     const {title, year, actor, franchise, director} = this.state;

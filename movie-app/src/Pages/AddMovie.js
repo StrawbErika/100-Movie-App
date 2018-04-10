@@ -22,7 +22,7 @@ class AddMovie extends Component{
         year: body.year,
         actor: body.actor,
         franchise: body.franchise,
-        director: body.director  
+        director: body.director
       })
     })
   }
@@ -53,43 +53,79 @@ class AddMovie extends Component{
       franchise: e.target.value})
   }
 
+  handleSubmit = (e) =>{
+    e.preventDefault()
+    fetch('http://localhost:3001/movie/add',
+    {
+      method: "POST",
+      headers: {
+      'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: this.state.title,
+        year: this.state.year,
+        director: this.state.director,
+        actor: this.state.actor,
+        franchise: this.state.franchise,
+      })
+    })
+    .then((response) => {return response.json() })
+    .then((body) => {
+      alert("Successfully added!")
+    }).catch((err) => {alert(">:(")})
+  }
+
 
 
   render(){
-    const {title, year, actor, franchise, director} = this.state;
       return (
         <div>
           <legend> Sign Up </legend>
-          <div>
-            <input
-            label="Title"
-            placeholder="Title"
-            value={this.state.title}/>
-          </div>
-          <div>
-            <input
-            label="Actor"
-            placeholder="Actor"
-            value={this.state.actor}/>
-          </div>
-          <div>
-            <input
-            label="Year"
-            placeholder="Year"
-            value={this.state.year}/>
-          </div>
-          <div>
-            <input
-            label="Franchise"
-            placeholder="Franchise"
-            value={this.state.franchise}/>
-          </div>
-          <div>
-            <input
-            label="Director"
-            placeholder="Director"
-            value={this.state.director}/>
-          </div>
+          <form onSubmit={this.handleSubmit}>
+            <div>
+              <input
+              name="title"
+              label="Title"
+              placeholder="Title"
+              value={this.state.title}
+              onChange={this.handleTitle}/>
+            </div>
+            <div>
+              <input
+              name="actor"
+              label="Actor"
+              placeholder="Actor"
+              value={this.state.actor}
+              onChange={this.handleActor}/>
+            </div>
+            <div>
+              <input
+              name="year"
+              label="Year"
+              placeholder="Year"
+              value={this.state.year}
+              onChange={this.handleYear}/>
+            </div>
+            <div>
+              <input
+              name="franchise"
+              label="Franchise"
+              placeholder="Franchise"
+              value={this.state.franchise}
+              onChange={this.handleFranchise}/>
+            </div>
+            <div>
+              <input
+              name="director"
+              label="Director"
+              placeholder="Director"
+              value={this.state.director}
+              onChange={this.handleDirector}/>
+            </div>
+            <div>
+              <button type="submit"> SUBMIT </button>
+            </div>
+          </form>
         </div>
       );
   }

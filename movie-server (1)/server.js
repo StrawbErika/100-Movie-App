@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const mongoose = require('mongoose');
-const DB_URL = 'mongodb://localhost/Movies';
+const DB_URL = 'mongodb://localhost/movies';
 mongoose.Promise = global.Promise;
 mongoose.connect(DB_URL);
 
@@ -38,4 +38,3 @@ app.listen(3001, (err) => {
   if (err) { console.log(err); }
   else { console.log('\nMovie server is running at http://localhost:3001'); }
 });
-

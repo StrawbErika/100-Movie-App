@@ -19,16 +19,32 @@ class Movies extends Component{
       this.setState({movies: body})
     })
   }
+  handleDelete = (e) =>{
+    e.persist()
+    fetch('http://localhost:3001/movie/delete',
+    {
+      method: "POST",
+      headers: {
+      'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        _id: e.target.attributes._id.value
+      })
+    })
+    .then((response) => {return response.json() })
+    .then((body) => {
+      alert("Successfully deleted!")
+    }).catch((err) => {alert(">:(")})
+  }
 
   render(){
     return(
       <div className ="content">
         <h2> Movies!</h2>
-        <ol> 
+        <ol>
           {
             this.state.movies.map((movie) =>{
-              return <li key={movie._id}>{movie.title} <button>Delete </button></li> 
-
+              return <li key={movie._id}>{movie.title} <button onClick={this.handleDelete} _id={movie._id}>Delete </button></li>
             })
           }
         </ol>
